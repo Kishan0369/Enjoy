@@ -18,12 +18,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post('/', upload.single('image'), (req, res) => {
-  const { category, subcategory, rating, comments, location, user_id } = req.body;
+  const { category, subcategory, rating, comments, location, user_id, user_name,latitude, longitude } = req.body;
   const imagePath = req.file.path;
 
   // Insert into the database
-  const sqlQuery = "INSERT INTO camera (user_id, image, category, subcategory, rating, comments, location) VALUES (?, ?, ?, ?, ?, ?, ?)";
-  const values = [user_id, imagePath, category, subcategory, rating, comments, location];
+  const sqlQuery = "INSERT INTO camera (user_id, user_name,image, category, subcategory, rating, comments, location, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+  const values = [user_id,user_name, imagePath, category, subcategory, rating, comments, location, latitude, longitude];
 
   connection.query(sqlQuery, values, (err, result) => {
     if (err) {

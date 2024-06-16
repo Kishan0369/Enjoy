@@ -27,7 +27,7 @@ const login = (req, res) => {
         }
     });
 
-    connection.end(); // Ensure the connection is closed after the query
+    connection.end();
 };
 
 module.exports = login;

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -12,7 +13,7 @@ const categoryScreen=require('./controller/categoryScreen');
 const giftTrending = require('./controller/giftTrending');
 const findGift=require('./controller/findGift');
 const app = express();
-const port = 8000; // Replace with your port number
+const port = process.env.SERVER_LOCAL_PORT ||8000; // Replace with your port number
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
